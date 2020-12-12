@@ -1,0 +1,21 @@
+int main(){
+    string ch="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    string ss="PgEfTYaWGHjDAmxQqFLRpCJBownyUKZXkbvzIdshurMilNSVOtec";
+    string x,res="";
+    ll n;
+    cin>>n;
+    while(n--){
+        res="";
+        cin>>x;
+        for(ll i=0;i<x.size();i++){
+            for(ll j=0;j<ch.size();j++){
+                if(ch[j]==x[i]) res.push_back(ss[j]);
+                else if(x[i]==' ') res=res+' ';
+            }
+        }
+ 
+        cout<<res<<" ";
+    }
+ 
+    return 0;
+}
