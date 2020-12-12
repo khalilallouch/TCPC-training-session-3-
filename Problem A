@@ -1,0 +1,40 @@
+ 
+int main()
+{
+    int n;
+    cin>>n;
+    string ch;
+    cin>>ch;
+    map<char,int>d;
+    for(int i=0;i<n;i++)
+    {
+        d[ch[i]]++;
+    }
+    map<char,int>::iterator itr;
+    int maxi=0;
+    int nb=0;
+    for(itr=d.begin();itr!=d.end();itr++)
+    {
+        maxi=max(maxi,itr->second);
+    }
+    for(itr=d.begin();itr!=d.end();itr++)
+    {
+        if(itr->second==maxi)
+        {
+           nb++;
+        }
+    }
+    cout<<nb<<endl;
+ 
+    for(itr=d.begin();itr!=d.end();itr++)
+    {
+        if(itr->second==maxi)
+        {
+           for(int j=0;j<maxi;j++)
+                cout<<itr->first;
+           cout<<endl;
+        }
+    }
+ 
+    return 0;
+}
