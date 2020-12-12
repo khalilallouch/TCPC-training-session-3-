@@ -1,0 +1,60 @@
+int countXOR(int n)
+{
+    int count0 = 0, count1 = 0;
+    while (n)
+    {
+        (n % 2 == 0) ? count0++ :count1++;
+        n /= 2;
+    }
+    return (count1);
+}
+map<int,int>Sieve(int n)
+{
+    map<int,int>v;
+	bool prime[n+1];
+	memset(prime, true, sizeof(prime));
+ 
+	for (int p=2; p*p<=n; p++)
+	{
+		if (prime[p] == true)
+		{
+			for (int i=p*p; i<=n; i += p)
+				prime[i] = false;
+		}
+	}
+	for (int p=2; p<=n; p++)
+	if (prime[p])
+		v[p]=1;
+    return(v);
+}
+ 
+int main()
+{
+    int dp[100005]={0};
+    map<int,int>d;
+    d=Sieve(100005);
+    for(int i=1;i<100005;i++)
+    {
+        if(d[countXOR(i)]==1)
+            dp[i]=dp[i-1]+1;
+        else
+            dp[i]=dp[i-1];
+    }
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int l,r;
+        cin>>l>>r;
+        if(d[countXOR(l)]==1)
+            cout<<dp[r]-dp[l]+1;
+        else
+            cout<<dp[r]-dp[l];
+        cout<<endl;
+    }
+ 
+ 
+    return 0;
+ 
+ 
+}
